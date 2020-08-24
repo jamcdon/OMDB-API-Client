@@ -1,0 +1,10 @@
+table *{
+    outline: black solid 1px;
+    padding: 0 1em 0 1em;
+}
+#flexCont div{
+    flex: 1;
+}
+#flexCont{
+    display:flex;
+}

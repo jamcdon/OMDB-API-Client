@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>apiReload</title>
+        <link rel='stylesheet' href='style.css'>
+    </head>
+
+    <body>
+        <div id='app'>
+            <h1>The OMDB API Tool </h1>
+            <input placeHolder='The Dark Knight...'
+                    v-model='movieKey'
+                    v-on:keyup.enter='newApi'/>
+            <div id = 'flexCont'>
+                <div>
+                    <h2>{{json.Title}}</h2>
+
+                    <p><b>Plot:</b> {{json.Plot}}</p>
+                    <p><b>Released:</b> {{json.Released}}</p>
+                    <p><b>Runtime:</b> {{json.Runtime}}</p>
+                    <p><b>Genre:</b> {{json.Genre}}</p>
+                    <img :src='json.Poster'/>
+
+                    <table>
+                        <tr>
+                            <th v-for='value in json.Ratings'>{{value.Source}}</th>
+                        </tr>
+                        <tr>
+                            <td v-for='value in json.Ratings'>{{value.Value}}</td>
+                        </tr>
+                    </table>
+
+                    <a v-bind:href='"http://imdb.com/title/"+json.imdbID'>imdb.com</a>
+                </div>
+                <div v-if="oldJson != ''">
+                    <h2>{{oldJson.Title}}</h2>
+
+                    <p><b>Plot:</b> {{oldJson.Plot}}</p>
+                    <p><b>Released:</b> {{oldJson.Released}}</p>
+                    <p><b>Runtime:</b> {{oldJson.Runtime}}</p>
+                    <p><b>Genre:</b> {{oldJson.Genre}}</p>
+                    <img :src='oldJson.Poster'/>
+
+                    <table>
+                        <tr>
+                            <th v-for='value in oldJson.Ratings'>{{value.Source}}</th>
+                        </tr>
+                        <tr>
+                            <td v-for='value in oldJson.Ratings'>{{value.Value}}</td>
+                        </tr>
+                    </table>
+
+                    <a v-bind:href='"http://imdb.com/title/"+oldJson.imdbID'>imdb.com</a>
+                </div>
+            </div>
+        </div>
+        <script src='vue_2.6.11.js'></script>
+        <script src='script.js'></script>
+        
+    </body>
+
+</html>
